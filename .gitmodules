@@ -1,0 +1,6 @@
+[submodule "extern-deps/github.com/ivmai/bdwgc"]
+	path = extern-deps/github.com/ivmai/bdwgc
+	url = git@github.com:ivmai/bdwgc.git
+[submodule "extern-deps/github.com/ivmai/libatomic_ops"]
+	path = extern-deps/github.com/ivmai/libatomic_ops
+	url = git@github.com:ivmai/libatomic_ops.git

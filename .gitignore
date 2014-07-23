@@ -1,0 +1,13 @@
+*.a
+*.bak
+*.dSYM
+*.la
+*.lo
+*.log
+*.o
+*.sw*
+*.test
+*~
+/build
+/test
+/tmp
