@@ -14,6 +14,7 @@
 
 #include <hopscotch/hopscotch.h>
 #include <inttypes.h>
+#include <stdbool.h>
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -32,21 +33,21 @@ main(void) {
 	hopscotch_list_add_el(
 		&a,
 		list,
-		(byte *) ("hello"),
+		(hopscotch_byte *) ("hello"),
 		(size_t) 6
 	);
 	bool b;
 	hopscotch_list_add_el(
 		&b,
 		list,
-		(byte *) ("hola"),
+		(hopscotch_byte *) ("hola"),
 		(size_t) 5
 	);
 	bool c;
 	hopscotch_list_contains_el(
 		&c,
 		list,
-		(byte *) ("homie"),
+		(hopscotch_byte *) ("homie"),
 		(size_t) 6
 	);
 	if (c) {
@@ -56,7 +57,7 @@ main(void) {
 	hopscotch_list_contains_el(
 		&d,
 		list,
-		(byte *) ("hello"),
+		(hopscotch_byte *) ("hello"),
 		(size_t) 6
 	);
 	if (d) {
@@ -66,7 +67,7 @@ main(void) {
 	hopscotch_list_contains_el(
 		&e,
 		list,
-		(byte *) ("hola"),
+		(hopscotch_byte *) ("hola"),
 		(size_t) 5
 	);
 	if (e) {
@@ -76,14 +77,14 @@ main(void) {
 	hopscotch_list_del_el(
 		&f,
 		list,
-		(byte *) ("hola"),
+		(hopscotch_byte *) ("hola"),
 		(size_t) 5
 	);
 	bool g;
 	hopscotch_list_contains_el(
 		&g,
 		list,
-		(byte *) ("hola"),
+		(hopscotch_byte *) ("hola"),
 		(size_t) 5
 	);
 	if (g) {
