@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "mt19937ar": "0.0.1",
+    "timestamp": "0.0.2"
+  },
+
+  "description": "A generic concurrent skip list library.",
+
+  "keywords": [
+    "concurrent",
+    "linked",
+    "list",
+    "skip",
+    "sorted",
+    "thread-safe"
+  ],
+
+  "license": "MIT",
+  "name": "hopscotch",
+  "repo": "jonathanmarvens/hopscotch",
+
+  "src": [
+    "src/hopscotch.c",
+    "src/hopscotch.h"
+  ],
+
+  "version": "0.0.1"
+}
