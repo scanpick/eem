@@ -20,9 +20,9 @@ _list_can_del_el(bool *, hopscotch_node_t *, uint8_t);
 static hopscotch_res_t
 _list_default_el_cmp(
 	int *,
-	byte *,
+	hopscotch_byte *,
 	size_t,
-	byte *,
+	hopscotch_byte *,
 	size_t
 );
 
@@ -33,7 +33,7 @@ _list_find_el(
 	hopscotch_node_t **,
 	hopscotch_node_t **,
 	hopscotch_list_t *,
-	byte *,
+	hopscotch_byte *,
 	size_t
 );
 
@@ -54,9 +54,9 @@ _list_can_del_el(bool * ans, hopscotch_node_t * el, uint8_t level) {
 static hopscotch_res_t
 _list_default_el_cmp(
 	int * res,
-	byte * val_a,
+	hopscotch_byte * val_a,
 	size_t val_a_size,
-	byte * val_b,
+	hopscotch_byte * val_b,
 	size_t val_b_size
 ) {
 	// Let's first handle the extrema.
@@ -103,7 +103,7 @@ _list_find_el(
 	hopscotch_node_t ** pred_nodes,
 	hopscotch_node_t ** succ_nodes,
 	hopscotch_list_t * list,
-	byte * val,
+	hopscotch_byte * val,
 	size_t val_size
 ) {
 	bool val_found = false;
@@ -212,7 +212,7 @@ hopscotch_list_new(hopscotch_list_t ** list, hopscotch_opts_t * opts) {
 	// Initialize the left sentinel node.
 	// The left sentinel node's level is, of course, equal to the max level.
 	list_left_sentinel_node->level = opts->max_level - 1;
-	list_left_sentinel_node->val.data = (byte *) HOPSCOTCH_VAL_LIST_DEFAULT_MIN_VAL;
+	list_left_sentinel_node->val.data = (hopscotch_byte *) HOPSCOTCH_VAL_LIST_DEFAULT_MIN_VAL;
 	list_left_sentinel_node->val.size = (size_t) (strlen((char *) list_left_sentinel_node->val.data) + 1);
 	list_left_sentinel_node->marked = false;
 	int _tmp_001 = pthread_mutex_init(&(list_left_sentinel_node->lock), NULL);
@@ -227,7 +227,7 @@ hopscotch_list_new(hopscotch_list_t ** list, hopscotch_opts_t * opts) {
 	// Initialize the right sentinel node.
 	// The right sentinel node's level is, of course, also equal to the max level.
 	list_right_sentinel_node->level = opts->max_level - 1;
-	list_right_sentinel_node->val.data = (byte *) HOPSCOTCH_VAL_LIST_DEFAULT_MAX_VAL;
+	list_right_sentinel_node->val.data = (hopscotch_byte *) HOPSCOTCH_VAL_LIST_DEFAULT_MAX_VAL;
 	list_right_sentinel_node->val.size = (size_t) (strlen((char *) list_right_sentinel_node->val.data) + 1);
 	list_right_sentinel_node->marked = false;
 	int _tmp_002 = pthread_mutex_init(&(list_right_sentinel_node->lock), NULL);
@@ -272,7 +272,7 @@ hopscotch_res_t
 hopscotch_list_add_el(
 	bool * added,
 	hopscotch_list_t * list,
-	byte * val,
+	hopscotch_byte * val,
 	size_t val_size
 ) {
 	uint8_t _top_level;
@@ -385,7 +385,7 @@ hopscotch_res_t
 hopscotch_list_contains_el(
 	bool * found,
 	hopscotch_list_t * list,
-	byte * val,
+	hopscotch_byte * val,
 	size_t val_size
 ) {
 	hopscotch_node_t * pred_nodes[(int) list->opts->max_level];
@@ -413,7 +413,7 @@ hopscotch_res_t
 hopscotch_list_del_el(
 	bool * deleted,
 	hopscotch_list_t * list,
-	byte * val,
+	hopscotch_byte * val,
 	size_t val_size
 ) {
 	hopscotch_node_t * node_to_del;
