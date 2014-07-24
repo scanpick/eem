@@ -94,7 +94,7 @@ using namespace std;
 #define HOPSCOTCH_VAL_LIST_DEFAULT_MAX_LEVEL 16
 #define HOPSCOTCH_VAL_LIST_DEFAULT_RAND_LEVEL_P 0.5
 
-typedef unsigned char hopscotch_byte;
+typedef unsigned char hopscotch_byte_t;
 
 // Almost every Hopscotch function returns this type. `0` always represents success.
 typedef enum {
@@ -136,7 +136,7 @@ struct _hopscotch_node {
 	pthread_mutex_t lock;
 	bool marked;
 	struct {
-		hopscotch_byte * data;
+		hopscotch_byte_t * data;
 		size_t size;
 	} val;
 };
@@ -144,9 +144,9 @@ struct _hopscotch_node {
 struct _hopscotch_opts {
 	hopscotch_res_t (* cmp)(
 		int *,
-		hopscotch_byte *,
+		hopscotch_byte_t *,
 		size_t,
-		hopscotch_byte *,
+		hopscotch_byte_t *,
 		size_t
 	);
 	struct {
@@ -181,7 +181,7 @@ HOPSCOTCH_ABI_EXPORT hopscotch_res_t
 hopscotch_list_add_el(
 	bool * added,
 	hopscotch_list_t * list,
-	hopscotch_byte * val,
+	hopscotch_byte_t * val,
 	size_t val_size
 );
 
@@ -197,7 +197,7 @@ HOPSCOTCH_ABI_EXPORT hopscotch_res_t
 hopscotch_list_contains_el(
 	bool * found,
 	hopscotch_list_t * list,
-	hopscotch_byte * val,
+	hopscotch_byte_t * val,
 	size_t val_size
 );
 
@@ -213,9 +213,24 @@ HOPSCOTCH_ABI_EXPORT hopscotch_res_t
 hopscotch_list_del_el(
 	bool * deleted,
 	hopscotch_list_t * list,
-	hopscotch_byte * val,
+	hopscotch_byte_t * val,
 	size_t val_size
 );
+
+HOPSCOTCH_ABI_EXPORT _ALWAYS_INLINE inline hopscotch_res_t
+hopscotch_list_delete_el(
+	bool * deleted,
+	hopscotch_list_t * list,
+	hopscotch_byte_t * val,
+	size_t val_size
+) {
+	return hopscotch_list_del_el(
+		deleted,
+		list,
+		val,
+		val_size
+	);
+}
 
 /**
  * Free a Hopscotch list.
